@@ -13,7 +13,7 @@ AsyncSessionLocal = sessionmaker(
     expire_on_commit=False
 )
 
-class Base(DeclarativeBase):
+class Base(DeclarativeBase): # Registra todos los modelos y mantiene el metadata
     pass
 
 async def get_db():

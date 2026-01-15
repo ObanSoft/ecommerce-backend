@@ -18,7 +18,7 @@ if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
 # Metadata para autogenerate
-target_metadata = Base.metadata
+target_metadata = Base.metadata # Crea las tablas gracias a los modelos
 
 
 def get_url():

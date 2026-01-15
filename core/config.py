@@ -9,6 +9,10 @@ class Settings(BaseSettings):
     DB_USER :str
     DB_PASSWORD :str
 
+    JWT_SECRET_KEY: str = "AW7813728SA1KSLAK12"
+    JWT_ALGORITHM: str = "HS256"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+
     @property # Convertimos la funcion en solo lectura
     def DATABASE_URL(self) -> str:
         return (

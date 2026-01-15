@@ -11,6 +11,7 @@ class AuthService:  # Agrupa la logica de registro y autenticación
     @staticmethod  # Es una función que pertenece a una clase pero no a una instancia 
     async def register(
         db: AsyncSession,
+        username: str,
         email: str,
         password: str,
     ) -> User:
@@ -35,6 +36,7 @@ class AuthService:  # Agrupa la logica de registro y autenticación
         hashed_password = hash_password(password)  # Función de hash
         
         return await user_repo.create(
+            username=username,
             email=email,
             password_hash=hashed_password,
             role=UserRole.CLIENTE

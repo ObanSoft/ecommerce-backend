@@ -16,11 +16,13 @@ class UserRepository: # Nos ayuda a interacturar con la sql y no meter el servic
 
     async def create( 
         self,
+        username: str,
         email: str,
         password_hash: str,
         role
     ) -> User:
         user = User(
+            username=username,
             email=email,
             password_hash=password_hash,
             role=role
@@ -29,3 +31,5 @@ class UserRepository: # Nos ayuda a interacturar con la sql y no meter el servic
         await self.db.commit()
         await self.db.refresh(user)
         return user
+    
+    

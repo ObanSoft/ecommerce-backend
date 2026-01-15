@@ -3,9 +3,12 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from core.database import get_db
 from modules.auth.schemas import RegisterRequest, LoginRequest, TokenResponse
 from modules.auth.service import AuthService
+
 from modules.auth.jwt import create_access_token
 
-router = APIRouter(prefix='/auth', tags=["Auth"])
+
+
+router = APIRouter(prefix='/api/v1/auth', tags=["Auth"])
 
 @router.post("/register")
 async def register(
@@ -15,6 +18,7 @@ async def register(
 
     user = await AuthService.register(
         db=db,
+        username=data.username,
         email=data.email,
         password=data.password
     )
@@ -39,5 +43,6 @@ async def login(
 
     return TokenResponse(
         access_token=token,
-        role = user.role.value
+        role = user.role.value,
+        username = user.username
     )
